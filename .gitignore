@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+funding_state.json
+NOTES-zh.md
+CURSOR-TASK-01-dedup.md
