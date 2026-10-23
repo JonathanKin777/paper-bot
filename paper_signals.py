@@ -171,6 +171,12 @@ def main():
         lines.append(f"  波动率官 {v[0]}：{v[1]}")
         lines.append(f"  资金费瞭望 {f[0]}：{f[1]}")
         lines.append(f"  情绪扫描 {s[0]}：{s[1]}")
+    if os.path.exists(LOG_PATH):
+        with open(LOG_PATH) as fh:
+            kept = [l for l in fh if l.strip() and
+                    json.loads(l).get("date") != today]
+        with open(LOG_PATH, "w") as fh:
+            fh.writelines(kept)
     with open(LOG_PATH, "a") as fh:
         fh.write(json.dumps(out, ensure_ascii=False) + "\n")
     print("\n".join(lines))
